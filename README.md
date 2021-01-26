@@ -6,18 +6,12 @@
 
 ### Links and Resources
 
-- [ci/cd](http://xyz.com) (GitHub Actions)
-- [back-end server url](http://xyz.com) (when applicable)
+- [ci/cd](https://github.com/ravenmoore-401-JS/storefront/actions/new) (GitHub Actions)
+
 - [front-end application](http://xyz.com) (when applicable)
 
 ### Setup
 
-#### `.env` requirements (where applicable)
-
-i.e.
-
-- `PORT` - Port Number
-- `MONGODB_URI` - URL to the running mongo instance/db
 
 #### How to initialize/run your application (where applicable)
 
@@ -34,3 +28,5 @@ i.e.
 #### UML
 
 ![uml](./assets/UML1.jpg)
+
+
