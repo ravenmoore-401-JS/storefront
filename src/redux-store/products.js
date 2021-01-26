@@ -20,6 +20,11 @@ function productsReducer(state=initialState, action){
   let { type, payload } = action;
   switch (type) {
 
+    case 'DETAILS':
+      console.log('clicked details for',payload)
+     
+      return {state};
+
         
     default:
       console.log('state on 31',state)
