@@ -28,5 +28,3 @@
 #### UML
 
 ![uml](./assets/UML1.jpg)
-
-
