@@ -23,8 +23,9 @@ function categoriesReducer(state=initialState, action){
     case 'SELECT':
       console.log('HELLO',state)
       let selectedCategory = state.categories.map(category => {
-        if(category.name === payload){
-          category.active = true
+        if((category.name === payload)&& (!category.active)){
+          category.active = true;
+          state.selected = category;
         }
         return category;
       });

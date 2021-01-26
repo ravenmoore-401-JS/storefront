@@ -8,9 +8,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-import{ details } from '../../redux-store/products';
+import{ details ,addToCart } from '../../redux-store/products';
+import { Container } from '@material-ui/core';
 
-const mapDispatchToProps = { details };
+const mapDispatchToProps = { details , addToCart };
 
 const useStyles = makeStyles({
   root: {
@@ -22,14 +23,25 @@ const useStyles = makeStyles({
 });
 
 function Products(props) {
-  console.log('prod props',props)
+  console.log('prod props',props);
   const classes = useStyles();
 
-  return (
-    // need to repeat this for each product...
-    <div id='products-list'>
-      products:
+  const detailsClick = (item)=>{
+    // TODO make this pop out a modal with the item with an add to cart btn and a back button.
+    console.log('selected item',item);
+    props.details(item.id);
+  }
+  const addItemToCart = (item)=>{
+    // should lead to updating a peice of cart state
+    console.log('adding item to cart',item);
+    props.addToCart(item);
+  }
 
+  return (
+    <Container id='products-list' >
+  
+      products:
+{/* TODO these cards want to be horizontal */}
     {props.products.map((product,idx) =>(
       <Card key={idx} className={classes.root}>
       <CardActionArea>
@@ -48,16 +60,16 @@ function Products(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button onClick={()=> addItemToCart(product)} size="small" color="primary">
           Add To Cart
         </Button>
-        <Button size="small" color="primary">
+        <Button onClick={()=> detailsClick(product)} size="small" color="primary">
           Learn More
         </Button>
       </CardActions>
       </Card>
     ))}
-    </div>
+    </Container>
   );
 }
 const mapStateToProps = state => ({

@@ -1,10 +1,11 @@
 let initialState = {
   // TODO this should be loaded from an api or storage somewhere maybe even a json,
   products: [
-    { id:1, name: 'Dragon', description: 'hand crafted Crochet Dragon' ,category:'Yarn', price:'300',count:5},
-    { id:1, name: 'Rose', description: 'Metal fabricated roses' ,category:'Metal-Art', price:'95',count:12},
-    { id:1, name: 'Fish', description: 'an green and purple x-ray fish' ,category:'Yarn', price:'70',count:1},
-    { id:1, name: 'wand', description: 'Steel wand hand twisted and forged from rebar' ,category:'Metal-Art', price:'40',count:3}
+    { id:1, name: 'Dragon', description: 'hand crafted Crochet Dragon' ,category:'Yarn', price:'225',count:1},
+    { id:2, name: 'Rose', description: 'Metal fabricated roses' ,category:'Metal-Art', price:'95',count:12},
+    { id:3, name: 'Fish', description: 'an green and purple x-ray fish' ,category:'Yarn', price:'55',count:1},
+    { id:4, name: 'wand', description: 'Steel wand hand twisted and forged from rebar' ,category:'Metal-Art', price:'33',count:3},
+    { id:4, name: 'necklace', description: 'wire wraped stone necklace' ,category:'Metal-Art', price:'45',count:1}
   ]
 };
 
@@ -16,8 +17,21 @@ export const details = (id) => {
   }
 }
 
+export const addToCart = (item) => {
+  return {
+    type: 'ADDTOCART',
+    payload: item
+  }
+}
+// TODO create cart reducer to manage cart state
+
 function productsReducer(state=initialState, action){
+
+
   let { type, payload } = action;
+
+  // TODO sort by activeSelection here and assign to state... then do action on current selection
+
   switch (type) {
 
     case 'DETAILS':
@@ -25,7 +39,11 @@ function productsReducer(state=initialState, action){
      
       return {state};
 
-        
+    case 'ADDTOCART':
+      console.log('clicked add to cart with item',payload)
+      
+      return {state};
+      
     default:
       console.log('state on 31',state)
       return state;
