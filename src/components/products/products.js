@@ -7,6 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
+import{ details } from '../../redux-store/products';
+
+const mapDispatchToProps = { details };
 
 const useStyles = makeStyles({
   root: {
@@ -17,25 +21,29 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Products() {
+function Products(props) {
+  console.log('prod props',props)
   const classes = useStyles();
 
   return (
     // need to repeat this for each product...
+    <div id='products-list'>
+      products:
 
-    <Card className={classes.root}>
+    {props.products.map((product,idx) =>(
+      <Card key={idx} className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
           image="/public/images/thubms/dragon_thumb1.jpg"
-          title="Crochet Dragon"
+          title={product.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Crochet Dragon
+            {product.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Exquisitly handcrafted dragon from choice of colors. see details for more INFO
+            {product.description}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -48,5 +56,12 @@ export default function Products() {
         </Button>
       </CardActions>
       </Card>
+    ))}
+    </div>
   );
 }
+const mapStateToProps = state => ({
+  products: state.productsReducer.products,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
