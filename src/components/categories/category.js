@@ -1,17 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { select } from '../../redux-store/categories';
 
+const mapDispatchToProps = { select };
 
-export default function Categories(){
+function Categories(props){
+  console.log('cat props',props)
 
-  // this needs to look for a list of categorys from redux store and an active category from reduxstore 
-
-  //itterate through recived categories and display each as a clickable link in a list sepperated list possibly by bars or a repeating jpg of a devider of some sort. under the header bar
-
-  // on click of link action for each category in the list..
-
+  const selectCategory = (name) => {
+    console.log('user picked category', name);
+    props.select(name);
+  }
+  
   return(
-    <>
-    i will be a list of selectable categories!!
-    </>
+    <div id='category-list'>
+      categories:
+    {/* {props.categories.map((category,idx)=> (
+      <div key={idx}>
+        <a href={category.name} onClick={()=>selectCategory(category.name)} >{category.displayName}</a>
+      </div>
+    ))} */}
+    </div>
   )
 }
+
+const mapStateToProps = state => ({
+  categories: state.categories,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);
