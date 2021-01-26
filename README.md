@@ -8,7 +8,7 @@
 
 - [ci/cd](https://github.com/ravenmoore-401-JS/storefront/actions/new) (GitHub Actions)
 
-- [front-end application](http://xyz.com) (when applicable)
+- [front-end application](https://laughing-golick-d90a1c.netlify.app) (when applicable)
 
 ### Setup
 
