@@ -1,10 +1,11 @@
 let initialState = {
+  // TODO this sholud be a list of unique categorys found by looking at current state of all items.
   categories: [
-    { name: 'All', displayName: 'all' ,active:true},
-    { name: 'Yarn', displayName: 'yarn' ,active:false},
-    { name: 'Critters', displayName: 'Critters',active:false },
+    { name: 'All', displayName: 'All' ,active:true},
+    { name: 'Yarn', displayName: 'Yarn' ,active:false},
     { name: 'Metal-Art', displayName: 'Metal-Art',active:false },
-  ]
+  ],
+  selected : {}
 };
 
 // actions
@@ -20,12 +21,14 @@ function categoriesReducer(state=initialState, action){
   switch (type) {
 
     case 'SELECT':
+      console.log('HELLO',state)
       let selectedCategory = state.categories.map(category => {
         if(category.name === payload){
-          return {category}
+          category.active = true
         }
-        return {selectedCategory};
-      });break
+        return category;
+      });
+      return {...state, selectedCategory};
         
     default:
       console.log('state on 31',state)

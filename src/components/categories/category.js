@@ -8,6 +8,7 @@ function Categories(props){
   console.log('cat props',props)
 
   const selectCategory = (name) => {
+    console.log('selected name',name)
     console.log('user picked category', name);
     props.select(name);
   }
@@ -15,17 +16,17 @@ function Categories(props){
   return(
     <div id='category-list'>
       categories:
-    {/* {props.categories.map((category,idx)=> (
+    {props.categories.map((category,idx)=> (
       <div key={idx}>
         <a href={category.name} onClick={()=>selectCategory(category.name)} >{category.displayName}</a>
       </div>
-    ))} */}
+    ))}
     </div>
   )
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories,
+   categories: state.categoriesReducer.categories,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
