@@ -26,8 +26,6 @@ export const addToCart = (item) => {
 // TODO create cart reducer to manage cart state
 
 function productsReducer(state=initialState, action){
-
-
   let { type, payload } = action;
 
   // TODO sort by activeSelection here and assign to state... then do action on current selection
