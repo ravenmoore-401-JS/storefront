@@ -10,10 +10,7 @@ export default function App() {
     <div className="App">
       <Header />
       <Categories />
-      <Container>
-        <Typography variant='h3'>This Will Change by active Category</Typography>
         <Products />
-      </Container>
       <Footer />
     </div>
   );

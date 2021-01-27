@@ -22,8 +22,9 @@ export default function Header() {
           </Typography>
 
     {/* this button will want to update from state store for number in parens */}
+    {/* add on click show model of simple cart?? */}
 
-          <Button color="inherit">Cart()</Button>
+          <Button color="inherit">Cart(cartcount)</Button>
         </Toolbar>
       </AppBar>
     </header>

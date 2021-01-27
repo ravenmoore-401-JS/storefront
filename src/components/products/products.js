@@ -32,22 +32,28 @@ function Products(props) {
     props.details(item.id);
   }
   const addItemToCart = (item)=>{
-    // should lead to updating a peice of cart state
+    // should decriment items count by one.
+    // send item to cart state in redux storage for use in model and buttons
     console.log('adding item to cart',item);
     props.addToCart(item);
   }
 
   return (
     <Container id='products-list' >
-  
-      products:
-{/* TODO these cards want to be horizontal */}
+      <div>
+      {/* should read activeCategory and render what category we are active on as a title*/} 
+        <Typography variant='h3'>Active Category</Typography>
+        <Typography >active category Description will go here</Typography>
+
+      </div>
+    {/* TODO these cards want to be horizontal */}
     {props.products.map((product,idx) =>(
       <Card key={idx} className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/public/images/thubms/dragon_thumb1.jpg"
+          // it wont pull up the images this is a materaials ui issue!
+          image ={product.image}
           title={product.name}
         />
         <CardContent>
