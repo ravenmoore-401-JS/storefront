@@ -17,20 +17,18 @@ export const details = (id) => {
   }
 }
 
-export const addToCart = (item) => {
-  return {
-    type: 'ADDTOCART',
-    payload: item
+export const sort = (category) =>{
+  return{
+    type: 'SORT',
+    payload : category
   }
 }
-// TODO create cart reducer to manage cart state
 
 function productsReducer(state=initialState, action){
 
 
   let { type, payload } = action;
 
-  // TODO sort by activeSelection here and assign to state... then do action on current selection
 
   switch (type) {
 
@@ -39,13 +37,12 @@ function productsReducer(state=initialState, action){
      
       return {state};
 
-    case 'ADDTOCART':
-      console.log('clicked add to cart with item',payload)
-      
+    case 'SORT':
+      console.log('clicked details for',payload)
+    
       return {state};
       
     default:
-      console.log('state on 31',state)
       return state;
   }
 }

@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { select } from '../../redux-store/categories';
@@ -5,11 +6,9 @@ import { select } from '../../redux-store/categories';
 const mapDispatchToProps = { select };
 
 function Categories(props){
-  console.log('cat props',props)
 
   const selectCategory = (name) => {
     console.log('selected name',name)
-    console.log('user picked category', name);
     props.select(name);
   }
   
@@ -17,7 +16,7 @@ function Categories(props){
     <div id='category-list'>
       categories:
     {props.categories.map((category,idx)=> (
-        <a key={idx} href={category.name} onClick={()=>selectCategory(category.name)} > {category.displayName} |</a>
+        <Button key={idx} onClick={()=>selectCategory(category.name)}>{category.displayName}</Button>
     ))}
     </div>
   )

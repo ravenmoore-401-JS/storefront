@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -23,27 +23,36 @@ const useStyles = makeStyles({
 });
 
 function Products(props) {
-  console.log('prod props',props);
+  console.log('prod props',props.products);
+  console.log('cat props',props.categories);
+
   const classes = useStyles();
 
   const detailsClick = (item)=>{
     // TODO make this pop out a modal with the item with an add to cart btn and a back button.
     console.log('selected item',item);
-    props.details(item.id);
+    props.products.details(item.id);
   }
+
   const addItemToCart = (item)=>{
     // should decriment items count by one.
     // send item to cart state in redux storage for use in model and buttons
     console.log('adding item to cart',item);
-    props.addToCart(item);
+    props.cart.addToCart(item);
+  }
+
+
+  function sortItemsByCategory() {
+    props.products.sort(props.categories.selected)
   }
 
   return (
     <Container id='products-list' >
       <div>
       {/* should read activeCategory and render what category we are active on as a title*/} 
-        <Typography variant='h3'>Active Category</Typography>
-        <Typography >active category Description will go here</Typography>
+        <Typography variant='h3'>Active Category: {props.categories.selected.name}</Typography>
+        <Typography >{props.categories.selected.description}</Typography>
+
 
       </div>
     {/* TODO these cards want to be horizontal */}
@@ -79,7 +88,9 @@ function Products(props) {
   );
 }
 const mapStateToProps = state => ({
-  products: state.productsReducer.products,
+  categories : state.categoriesReducer,
+  products: state.productsReducer,
+  cart: state.cartReducer
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
