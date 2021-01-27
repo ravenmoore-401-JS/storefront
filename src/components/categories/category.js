@@ -17,9 +17,7 @@ function Categories(props){
     <div id='category-list'>
       categories:
     {props.categories.map((category,idx)=> (
-      <div key={idx}>
-        <a href={category.name} onClick={()=>selectCategory(category.name)} >{category.displayName}</a>
-      </div>
+        <a key={idx} href={category.name} onClick={()=>selectCategory(category.name)} > {category.displayName} |</a>
     ))}
     </div>
   )
